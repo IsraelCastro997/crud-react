@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+
+import ToList from './components/ToList';
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Create from "./components/Create";
+import Edit from "./components/Edit";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <nav className="navbar navbar-expand navbar-light bg-light">
+            <div className="nav navbar-nav">
+                <Link className="nav-item nav-link active" to={"/"}>Home <span className="sr-only">(current)</span></Link>
+                <Link className="nav-item nav-link" to={"/create"}>Create Employee</Link>
+                
+            </div>
+        </nav>
+        <div className ="container mt-5">
+         
+          <Route exact path="/" component={ToList}></Route>
+          <Route path="/create" component={Create}></Route>
+          <Route path="/edit/:id" component={Edit}></Route>
+        </div>
+        
+      </div>
+    </Router>
   );
 }
 
